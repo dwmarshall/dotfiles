@@ -1,0 +1,14 @@
+[custom.memorypressure]
+description = "Memory Pressure"
+when = "true"
+shell = ["zsh", "-f", "--no-rcs"]
+command = """
+case $(sysctl -n kern.memorystatus_vm_pressure_level) in
+  1) print -P "%F{#66ff00}●%f"
+      ;;
+  2) print -P "%F{#ffeb2a}●%f"
+      ;;
+  4) print -P "%F{#ff160c}●%f"
+      ;;
+esac
+"""

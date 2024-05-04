@@ -1,0 +1,16 @@
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+autoload -U compinit; compinit
+export SSH_AUTH_SOCK=$HOME/.yubiagent/sock
+export PATH="$HOME/bin:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
+
+function waitfor() {
+  local host=$1
+  while ! tcping -q -f 4 $host 22; do
+    sleep 5
+  done
+}

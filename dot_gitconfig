@@ -1,0 +1,64 @@
+# for things that care about global
+[user]
+	name = David Marshall
+	email = THE_EMAIL_ADDRESS_THAT_DARE_NOT_SPEAK_ITS_NAME
+
+[includeIf "gitdir:~/code/github.com/"]
+  path = ~/code/github.com/.gitconfig
+
+[includeIf "gitdir:~/code/gitlab.com/"]
+  path = ~/code/gitlab.com/.gitconfig
+
+[color]
+	diff = auto
+	branch = auto
+	status = auto
+[core]
+	excludesfile = /Users/dmarshal/.gitignore_global
+	pager = less -FX
+[push]
+	default = simple
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[hob]
+[hub]
+[credential]
+	helper = osxkeychain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[fetch]
+	prune = true
+	pruneTags = true
+[commit]
+	gpgsign = false
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[diff]
+    tool = Kaleidoscope
+[difftool]
+    prompt = false
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[merge]
+    tool = Kaleidoscope
+    keepBackup = false
+[mergetool]
+    prompt = false
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+
+[checkout]
+	defaultRemote = origin
+[alias]
+    check-whitespace = !git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+[init]
+	defaultBranch = main
+[pull]
+	ff = only
+[safe]
+	directory = *

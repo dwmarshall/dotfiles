@@ -1,0 +1,6 @@
+[user]
+	name = David Marshall
+	email = dmarshall@gmail.com
+
+[commit]
+    gpgsign = false
